@@ -22,6 +22,13 @@ Seletores podem ser combinados de outras formas também, especialmente em CSS 2.
 
 Aqui está um exemplo que resume as regras acima:
 
+ selector [, selector2, ...][:pseudo-class] {
+ property: value;
+ [property2: value2;
+ ...]
+ }
+ /* comment *
+
 
 Seletores
 Definição de estilo é um conjunto de propriedades visuais para um elemento, o CSS define regras que fazem as definições de estilo casarem com um elemento ou grupo de elemento, o documento pode conter um bloco de CSS num elemento style ou usando o elemento link apontando para um arquivo externo que contenha o bloco CSS.
@@ -31,22 +38,28 @@ Para uso com o CSS, foi criado o atributo class que todo elemento pode conter.
 As regras de casamento para o CSS são chamadas de seletores, uma definição de estilo pode ser casada com um seletor ou um grupo de seletores separados por vírgula, um seletor pode casar um elemento por:
 
 elemento do tipo: element_name { style definition; }
-
 elemento do tipo com a classe: element_name.class_name { style definition; }
-
 todos os elementos com a classe: .class_name { style definition; }
-
 o elemento com o id: #id_of_element { style definition; }
-
 casamento de um grupo: element_name_01, element_name_02, .class_name { style definition; }
 
 Exemplos
+ p {text-align: right; color: #BA2;}
+ p.minhaclasse01 { color:#ABC; }
+ .minhaclasse02 { color:#CAD; }
+ # iddomeuelemento { color:#ACD; }
+ p.minhaclasse03 .minhaclasse04 { color:#ACD; }
 
 
 
-
-Exemplos de código
-
+Exemplos
+/* comentário em css, semelhante aos da linguagem c */
+ body
+ {
+   font-family: Arial, Verdana, sans-serif;
+   background-color: #FFF;
+   margin: 5px 10px;
+ }
 
 
 
@@ -58,24 +71,138 @@ As especificações do CSS podem ser obtidas no site da W3C "World Wide Web Cons
 
 É importante notar que nenhum navegador suporta igualmente as definições do CSS. Desta forma, o web designer deve sempre testar suas folhas de estilo em navegadores de vários fabricantes, e preferencialmente em mais de uma versão, para se certificar de que o que foi codificado realmente seja apresentado da forma desejada.
 
+
+Exemplo de CSS aplicado em XML
+
+Arquivo *.XML com ligação para uma folha de estilos em cascata:
+
+<?xml version="1.0" encoding="UTF-8"?>
+ <?xml-stylesheet type="text/css" href="css.css"?>
+ <schedule>
+   <date>Tuesday 20 June</date>
+   <programme>
+     <starts>6:00</starts>
+     <title>News</title>
+     With Michael Smith and Fiona Tolstoy.
+     Followed by Weather with Malcolm Stott.
+   </programme>
+   <programme>
+     <starts>6:30</starts>
+     <title>Regional news update</title>
+     Local news for your area.
+   </programme>
+   <programme>
+     <starts>7:00</starts>
+     <title>Unlikely suspect</title>
+     Whimsical romantic crime drama starring Janet
+     Hawthorne and Percy Trumpp.
+   </programme>
+ </schedule>
+
+O arquivo *.CSS que formata o XML anterior:
+ @media screen {
+    schedule {
+      display: block;
+      margin: 10px;
+      width: 300px;
+    }
+    date {
+      display: block;
+      padding: 0.3em;
+      font: bold x-large sans-serif;
+      color: white;
+      background-color: #C6C;
+    }
+    programme {
+      display: block;
+      font: normal medium sans-serif;
+    }
+    programme > * { /* All children of programme elements */
+      font-weight: bold;
+      font-size: large;
+    }
+    title {
+      font-style: italic;
+    }
+  }
+
+CSS e JavaScript
+Pop-up não-bloqueável
+
+<html>
+  <head>
+    <style type="text/css">
+ # popup {
+        position: absolute;
+        top: 30%;
+        left: 30%;
+        width: 300px;
+        height: 150px;
+        padding: 20px 20px 20px 20px;
+        border-width: 2px;
+        border-style: solid;
+        background: #ffffa0;
+        display: none;
+      }
+    </style>
+    <script type="text/javascript">
+      function abrir() {
+        document.getElementById('popup').style.display = 'block';
+        setTimeout ("fechar()", 3000);
+      }
+      function fechar() {
+        document.getElementById('popup').style.display = 'none';
+      }
+    </script>
+  </head>
+  <body onload="abrir()" >
+    <div id="popup" class="popup">
+      Esse é um exemplo de popup utilizando o elemento <code>div</code>. Dessa maneira esse
+      pop-up não será bloqueado.
+      <small><a href="javascript: fechar();">[X]</a></small>
+    </div>
+ <a href="javascript: abrir();">Abrir pop-up</a>
+ <a href="javascript: fechar();">Fechar pop-up</a>
+  </body>
+ </html>
+
+Padronização
 Frameworks
 Os frameworks CSS são bibliotecas pré-preparadas destinadas a permitir um estilo mais fácil e mais compatível com os padrões de páginas da web usando a linguagem Cascading Style Sheets. Os frameworks CSS incluem Blueprint, Bootstrap, Cascade Framework, Foundation e Materialize. Assim como as bibliotecas de linguagem de programação e script, os frameworks CSS são geralmente incorporados como planilhas .css externas referenciadas no HTML <head>. Eles fornecem uma série de opções prontas para projetar e fazer o layout da página da web. Embora muitos desses frameworks tenham sido publicados, alguns autores os usam principalmente para prototipagem rápida, ou para aprender com, e preferem 'criar' CSS apropriado para cada site publicado sem a sobrecarga de design, manutenção e download de muitos recursos não utilizados no estilo do site.
 
 Metodologias de design
 Conforme o tamanho dos recursos CSS usados em um projeto aumenta, uma equipe de desenvolvimento geralmente precisa decidir sobre uma metodologia de design comum para mantê-los organizados. Os objetivos são facilidade de desenvolvimento, facilidade de colaboração durante o desenvolvimento e desempenho das folhas de estilo implementadas no navegador. As metodologias populares incluem OOCSS (CSS orientado a objeto), ACSS (CSS atômico), oCSS (folha de estilo em cascata orgânica), SMACSS (arquitetura escalável e modular para CSS) e BEM (bloco, elemento, modificador).
 
+
 Ver também
-
 Acid2
-
 Javascript
-
 HTML
-
 HTML5
-
 Padrões web
-
 Tableless
-
 XHTML
+
+Referências
+ 1. «Cascading Style Sheets» (https://www.w3.org/Style/CSS/). www.w3.org (em inglês).
+ Consultado em 8 de setembro de 2020
+2. «W3C CSS2.1 specification for rule sets, declaration blocks, and selectors» (http://www.w3.org/
+ TR/CSS21/syndata.html#q10). W3.org. Consultado em 8 de setembro de 2020
+ 3. Ver a definição completa de seletores no website W3C (http://www.w3.org/TR/CSS21/selector.
+ html).
+ 4. Cederholm, Dan; Marcotte, Ethan (9 de abril de 2010). Handcrafted CSS: More Bulletproof
+ Web Design (https://books.google.pl/books?id=UgrUeIwsS60C&pg=PA114&redir_esc=y#v=one
+ page&q&f=false) (em inglês). [S.l.]: New Riders
+ 5. «OOCSS, ACSS, BEM, SMACSS: what are they? What should I use? – clubmate.fi» (https://we
+ b.archive.org/web/20150602231126/http://clubmate.fi/oocss-acss-bem-smacss-what-are-they
+what-should-i-use/). web.archive.org. 2 de junho de 2015. Consultado em 29 de março de 2021
+
+Ligações externas
+ «Página oficial» (https://www.w3.org/Style/CSS/) (em inglês)
+ «W3C CSS Specification» (https://www.w3.org/TR/CSS/) (em inglês)
+ «Serviço de validação de CSS do W3C» (https://jigsaw.w3.org/css-validator/)
+ «Aprenda a estilizar HTML utilizando CSS» (https://developer.mozilla.org/pt-BR/docs/Learn/CS
+ S). Guia na 
+MDN Web Docs
+
+ Obtida de "https://pt.wikipedia.org/w/index.php?title=Cascading_Style_Sheets&oldid=70327923"

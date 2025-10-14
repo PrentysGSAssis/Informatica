@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="/envia" method="post">
+    <label for="nome">Nome: </label>
+    <input type="text" id="nome" name="nome" required>
+    <button type="submit">Enviar</button>
+    </form>
+
+    
+    <form action="">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="seu@exemplo.com">
+
+         <fieldset>
+ <legend>Quais linguagens você conhece?</legend>
+<label><input type="checkbox" name="linguagens" value="html"> HTML</label>
+ <label><input type="checkbox" name="linguagens" value="css"> CSS</label>
+ <label><input type="checkbox" name="linguagens" value="js"> JavaScript</label>
+ </fieldset>
+ <fieldset>
+ <legend>Você já programou antes?</legend>
+ <label><input type="radio" name="experiencia" value="sim"> Sim</label>
+ <label><input type="radio" name="experiencia" value="nao"> Não</label>
+ </fieldset>
+  <label for="pais">País</label>
+ <select id="pais" name="pais">
+ <option value="br">Brasil</option>
+ <option value="pt">Portugal</option>
+ </select>
+ <label for="cidade">Cidade (sugestões)</label>
+ <input list="cidades" id="cidade" name="cidade">
+ <datalist id="cidades">
+ <option value="São Paulo">
+ <option value="Rio de Janeiro">
+ </datalist>
+ <label for="msg">Mensagem</label>
+ <textarea id="msg" name="mensagem" rows="6" placeholder="Escreva sua mensagem..."></textarea>
+
+  
+ <label for="arquivo">Escolha um arquivo</label>
+ <input type="file" id="arquivo" name="arquivo">
+ <button type="submit">Enviar</button>
+ 
+    </form>
+
+
+</body>
+</html>
